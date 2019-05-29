@@ -11,6 +11,9 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+// Added this static route to use the Slider library-->
+app.use('/scripts', express.static(__dirname + '/node_modules/swider/dist/'));
+
 
 // Handlebars
 app.engine(

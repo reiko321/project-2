@@ -1,33 +1,78 @@
 <div id="home">
   <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
+    <div class="jumbotron">
+      <p><h1>Mind(Re)set</h1></p>
+      <p><h2>This is the earliest version of our page!</h2></p>
+
     </div>
+
+    <div class="row m-1">
+      <p>
+        <h3>How are you feeling now?</h3>
+      </p>
+      <div class="border">
+        {{> current-block }}
+      </div>
+      
+    </div>
+    <br>
+    <div class="row m-1">
+      <p>
+        <h3>How would you <i>like</i> to feel?</h3>
+      </p>
+      {{> desired-block }}
+    </div>
+    <br>
+    <div class="row m-1">
+      <p>
+        <h4>Here are your (re)sults!</h4>
+      </p>
+      {{> results-block }}
+    </div>
+
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="../public/js/index.js"></script>
+<script src="../scripts/js/swiper.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    //initialize swiper when document ready
+    var mySwiper = new Swiper ('.swiper-container', {
+      // Optional parameters
+      slidesPerView: 3,
+      spaceBetween: 30,
+      slidesPerGroup: 3,
+      direction: 'vertical',
+      loop: true,
+      loopFillGroupWithBlank: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    })
+  });
+  
+  {{!-- var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    slidesPerGroup: 3,
+    loop: true,
+    loopFillGroupWithBlank: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  }); --}}
+</script>
