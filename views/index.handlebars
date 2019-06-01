@@ -1,37 +1,36 @@
+{{> header }}
 <div id="home">
   <div class="container">
-    <div class="jumbotron">
-      <p><h1>Mind(Re)set</h1></p>
+    <div class="text-center bg-light">
       <p><h2>This is the earliest version of our page!</h2></p>
 
     </div>
 
     <div class="row m-1">
-      <p>
-        <h3>How are you feeling now?</h3>
-      </p>
-      <div class="border">
-        {{> current-block }}
+      <div class="col-6"
+        <p>
+          <h3>How are you feeling now?</h3>
+        </p>
+        <div class="border">
+          {{> current-block }}
+        </div>
       </div>
-      
+      <div class="col-6">
+        <p>
+          <h3>How would you <i>like</i> to feel?</h3>
+        </p>
+        {{> desired-block }}
+      </div>  
     </div>
-    <br>
-    <div class="row m-1">
-      <p>
-        <h3>How would you <i>like</i> to feel?</h3>
-      </p>
-      {{> desired-block }}
-    </div>
-    <br>
-    <div class="row m-1">
-      <p>
-        <h4>Here are your (re)sults!</h4>
-      </p>
-      {{> results-block }}
+    
+     <div>
+        <a href="results">Results</a>
     </div>
 
   </div>
 </div>
+
+{{> footer }}
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
