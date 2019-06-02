@@ -1,11 +1,69 @@
+<style>
+  .swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+</style>
+
 <button data-state="happy" class="btn btn-info">
-    I feel...<em>Happy!</em>
+  I feel...<em>Happy!</em>
 </button>
 
 <button data-state="bored" class="btn btn-info">
-    I feel... <em>Bored</em>
+  I feel... <em>Bored</em>
 </button>
 
 <button data-state="sad" class="btn btn-info">
-    I feel... <em>Sad :(</em>
+  I feel... <em>Sad :(</em>
 </button>
+
+<div class="text-secondary">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">Happy!</div>
+      <div class="swiper-slide">Bored</div>
+      <div class="swiper-slide">Sad</div>
+      <div class="swiper-slide">Slide 4</div>
+      <div class="swiper-slide">Slide 5</div>
+      <div class="swiper-slide">Slide 6</div>
+      <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div>
+      <div class="swiper-slide">Slide 9</div>
+      <div class="swiper-slide">Slide 10</div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+</div>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+  swiper();
+</script>
