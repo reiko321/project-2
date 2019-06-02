@@ -1,52 +1,11 @@
-<div class="col">
-  <div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide">Happy</div>
-      <div class="swiper-slide">Bored</div>
-      <div class="swiper-slide">Sad</div>
-      {{!-- <div class="swiper-slide">Slide 4</div>
-      <div class="swiper-slide">Slide 5</div>
-      <div class="swiper-slide">Slide 6</div>
-      <div class="swiper-slide">Slide 7</div>
-      <div class="swiper-slide">Slide 8</div>
-      <div class="swiper-slide">Slide 9</div>
-      <div class="swiper-slide">Slide 10</div> --}}
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-    <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
+<button data-state="happy" class="btn btn-info">
+    I feel...<em>Happy!</em>
+</button>
 
-</div>
+<button data-state="bored" class="btn btn-info">
+    I feel... <em>Bored</em>
+</button>
 
-{{!-- <ul class="list-group">
-    <li class="list-group-item">Happy</li>
-    <li class="list-group-item">Bored</li>
-    <li class="list-group-item">Sad</li>
-  </ul> --}}
-
-{{!-- <div class="col">
-    <form>
-    <label for="customRange">Custom range</label>
-    <input type="range" class="custom-range" id="customRange" name="points1">
-    </form>
-</div> --}}
-<script>
-  var swiper = new Swiper(".swiper-container", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    slidesPerGroup: 3,
-    loop: true,
-    loopFillGroupWithBlank: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev"
-    }
-  });
-</script>
+<button data-state="sad" class="btn btn-info">
+    I feel... <em>Sad :(</em>
+</button>

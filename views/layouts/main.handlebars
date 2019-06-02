@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="height:100%;">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +11,13 @@
   <link rel="stylesheet" href="../../node_modules/swiper/dist/css/swiper.min.css">
   <link rel="stylesheet" href="../../public/styles/styles.css" type="text/css" media="screen" charset="utf-8">
 </head>
-{{> header }}
-<body class="gradient">
+<body class="gradient" style="height:100; background: #0E2745;
+  background-image: radial-gradient(ellipse 50% 90% at 50% 20% , #41556C 0%, #0E2745 100%);">
+  {{> header }}
+
   {{{ body }}}
+
+  {{> footer }}
+
 </body>
-{{> footer }}
 </html>
