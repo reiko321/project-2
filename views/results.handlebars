@@ -3,6 +3,8 @@
         <h4>Please consider the following resources to (re)set!</h4>
     </p>
 </div>
+
+<button class="btn" data-state="amused">Button!</button>
 <div class="row m-1 text-center text-light">
     
     <div class="col 4">
@@ -33,3 +35,36 @@
 <div class="text-center mt-5">
         <a href="/"><h3>Back To Home</h3></a>
 </div>
+
+
+<script type="text/javascript">
+$("button").on("click", function(){
+    let resultOne = $(this).attr("data-state");
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        resultOne + "&api_key=dc6zaTOxFJmzC&limit=10";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+    .then(function(response) {
+          console.log(queryURL);
+
+          console.log(response);
+          var results = response.data;
+
+          for (var i = 0; i < results.length; i++) {
+            var resultDiv = $("<div>");
+            var p = $("<p>").text("Rating: " + results[i].rating);
+            var resultImage = $("<img>");
+            resultImage.attr("src", results[i].images.fixed_height.url);
+
+            resultDiv.append(p);
+            resultDiv.append(resultImage);
+
+            $("#results-one-div").prepend(resultsDiv);
+          }
+        
+    });
+});
+</script>
