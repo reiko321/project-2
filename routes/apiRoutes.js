@@ -23,5 +23,3 @@ module.exports = function(app) {
     });
   });
 };
-
-

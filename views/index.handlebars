@@ -1,77 +1,150 @@
-{{> header }}
-<div id="home">
+<div id="home" class="mt-4">
+  <!--Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Modal-->
   <div class="container">
-    <div class="text-center bg-light">
-      <p><h2>This is the earliest version of our page!</h2></p>
+    <div class="text-center text-light" id="intro-sentence">
+      <p>
+        <h4>Feeling <em>ABC</em> is totally okay! But if you are interested in feeling <em>XYZ</em>, then we can help!
+        </h4>
+      </p>
 
     </div>
 
-    <div class="row m-1">
-      <div class="col-6"
+    <div class="row m-1 text-light">
+      <div class="col text-center" id="current-state-div">
         <p>
-          <h3>How are you feeling now?</h3>
+          <h2>How are you feeling now?</h2>
         </p>
         <div class="border">
           {{> current-block }}
         </div>
       </div>
-      <div class="col-6">
+
+      <div class="col text-light text-center" id="desired-state-div" style="display: none;">
         <p>
-          <h3>How would you <i>like</i> to feel?</h3>
+          <h2>How would you <i>like</i> to feel?</h2>
         </p>
-        {{> desired-block }}
-      </div>  
+        <div class="border">
+          {{> desired-block }}
+        </div>
+      </div>
     </div>
-    
-     <div>
-        <a href="results">Results</a>
+
+    <div id="confirmation-div" style="display: none;">
+      <a href="/results" class="btn" id="confirmation">YES!</a>
     </div>
+
+    <div class="text-center mt-5" style="display: none;" id="back-btn">
+        <a href="/"><h3>(re)start</h3></a>
+  </div>
 
   </div>
-</div>
+</div>  
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
 
-{{> footer }}
+
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="../public/js/index.js"></script>
-<script src="../scripts/js/swiper.min.js"></script>
 
-<script>
+<script type="text/javascript">
+
   $(document).ready(function () {
-    //initialize swiper when document ready
-    var mySwiper = new Swiper ('.swiper-container', {
-      // Optional parameters
-      slidesPerView: 3,
-      spaceBetween: 30,
-      slidesPerGroup: 3,
-      direction: 'vertical',
-      loop: true,
-      loopFillGroupWithBlank: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    })
+    $("#desired-state-div").hide();
   });
-  
-  {{!-- var swiper = new Swiper('.swiper-container', {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    slidesPerGroup: 3,
-    loop: true,
-    loopFillGroupWithBlank: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
+
+  let desiredStateArray = [
+    {
+      desiredState: "Entertained",
+      origState: "happy",
+      desired: false
+
     },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+    {
+      desiredState: "Grounded",
+      origState: "happy",
+      desired: false
+
     },
+    {
+      desiredState: "Inspired",
+      origState: "bored",
+      desired: false
+
+    },
+    {
+      desiredState: "Amused",
+      origState: "bored",
+      desired: false
+
+    },
+    {
+      desiredState: "Cheery",
+      origState: "sad",
+      desired: false
+
+    },
+    {
+      desiredState: "Motivated",
+      origState: "sad",
+      desired: false
+    }
+  ]
+
+  $(".swiper-slide").on("click", function () {
+    $("#intro-sentence").hide();
+    $("#desired-state-div").show();
+    $("#back-btn").show();
+    $("#current-state-div").hide();
+    let currentState = $(this).attr("data-state");
+
+    for (let i = 0; i < desiredStateArray.length; i++) {
+
+      if (currentState === desiredStateArray[i].origState) {
+        let changedState;
+        let str = desiredStateArray[i].desiredState;
+        changedState = str.toLowerCase();
+        let stateDiv = $("<div>");
+        let showDesiredState = $('<button id="' + changedState
+         + '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-state="' + changedState
+          + '"><h3>' + "I want to feel... " + desiredStateArray[i].desiredState
+          + "!" + "</h3></button>");
+        stateDiv.append(showDesiredState);
+        $("#desired-state-div").append(stateDiv);
+      } 
+    }
+  });
+
+  {{!-- $(".blarg").on("click", function(){
+    $("#desired-state-div").hide();
+    $("#confirmation-div").show();
+    $("#confirmation-div").append("So, you're feeling " + currentState + ", and you'd rather feel " + desiredState + "?");
   }); --}}
+
+ $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+  })
+
+
 </script>

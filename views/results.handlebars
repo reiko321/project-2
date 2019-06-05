@@ -1,13 +1,19 @@
-<div class="row m-1 text-center">
+<div class="text-center text-light">
     <p>
-        <h4>Here are your (re)sults!</h4>
+        <h4>Please consider the following resources to (re)set!</h4>
     </p>
+</div>
+
+<button class="btn" data-state="amused">Button!</button>
+<div class="row m-1 text-center text-light">
+
     <div class="col 4">
         <div>
             <p>
                 <h4>Results One Div</h4>
             </p>
         </div>
+        <div id="results-one-div">(content generates here)</div>
     </div>
     <div class="col 4">
         <div>
@@ -15,6 +21,7 @@
                 <h4>Results Two Div</h4>
             </p>
         </div>
+        <div id="results-two-div">(content generates here)</div>
     </div>
     <div class="col 4">
         <div>
@@ -22,7 +29,39 @@
                 <h4>Results Three Div</h4>
             </p>
         </div>
+        <div id="results-three-div">(content generates here)</div>
     </div>
-    <a href="/">← Back To Home</a>
-
 </div>
+<div class="text-center mt-5">
+    <a href="/">
+        <h3>Back To Home</h3>
+    </a>
+</div>
+
+
+<script type="text/javascript">
+    $("button").on("click", function () {
+        let resultOne = $(this).attr("data-state");
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            resultOne + "&api_key=ACXLyhgAnWu2x7cLRHvyYUobXHDiTbSP&limit=10";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (response) {
+                console.log(queryURL);
+
+                console.log(response);
+                var results = response.data;
+
+                for (var i = 0; i < results.length; i++) {
+                    let resultDiv = $('<div class="card mb-1 text-dark" style="max-width: 202px;"><img class="card-img-top" alt="Mind(Re)Set Result" src="'
+                     + results[i].images.fixed_height.url + '"> <div class="card-body"> <h3 class="card-title">'
+                          + results[i].rating + '</h3> <p class="card-text">' + results[i].rating + '</p> </div> </div>');
+                    $("#results-one-div").append(resultDiv);
+                }
+
+            });
+    });
+</script>

@@ -1,25 +1,32 @@
 var db = require("../models");
+var path = require("path");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+    res.render(path.join(__dirname, "../views/index.handlebars"));
   });
-
-  // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
-    });
+  // Render Other Pages
+  // the actual "db" content ntb edited/updated
+  app.get("/results", function(req, res) {
+    res.render(path.join(__dirname, "../views/results.handlebars"));
   });
-
+  app.get("/history", function(req, res) {
+    res.render(path.join(__dirname, "../views/history.handlebars"));
+  });
+  app.get("/about", function(req, res) {
+    res.render(path.join(__dirname, "../views/about.handlebars"));
+  });
+  app.get("/results", function(req, res) {
+    res.render(path.join(__dirname, "../views/other-resources.handlebars"));
+  });
+  app.get("/signin", function(req, res) {
+    res.render(path.join(__dirname, "../views/signin.hbs"));
+  });
+  app.get("/signup", function(req, res) {
+    res.render(path.join(__dirname, "../views/results.hbs"));
+  });
+  
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");

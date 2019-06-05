@@ -1,10 +1,24 @@
+.gradient {
+  width: 100%;
+  height: 100%;
+  background: #0E2745;
+  background-image: radial-gradient(ellipse 50% 90% at 50% 20% , #41556C 0%, #0E2745 100%);
+}
+
 .list-group-item {
   line-height: 2.5;
 }
 
 #sticky-footer {
-  flex-shrink: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 20px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
 }
+
 
 .swiper-container {
   width: 100%;
