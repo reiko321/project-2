@@ -6,6 +6,10 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     res.render(path.join(__dirname, "../views/index.handlebars"));
   });
+  // app.get("/", function(req, res, next) {
+  //   res.render("index", { layout: false });
+  // });
+
   // Render Other Pages
   // the actual "db" content ntb edited/updated
   app.get("/results", function(req, res) {
@@ -21,12 +25,12 @@ module.exports = function(app) {
     res.render(path.join(__dirname, "../views/other-resources.handlebars"));
   });
   app.get("/signin", function(req, res) {
-    res.render(path.join(__dirname, "../views/signin.hbs"));
+    res.render(path.join(__dirname, "../views/signin.handlebars"));
   });
   app.get("/signup", function(req, res) {
-    res.render(path.join(__dirname, "../views/results.hbs"));
+    res.render(path.join(__dirname, "../views/results.handlebars"));
   });
-  
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
