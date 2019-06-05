@@ -5,9 +5,11 @@
     </p>
 </div>
 
+<button id="history-btn" class="btn">Show My History</button>
+
 <div class="row">
     <div class="col-4"></div>
-    <div class="col-4">
+    <div class="col-4" id="history-div">
 
         <div class="card mb-3">
             <img class="card-img"
@@ -23,7 +25,7 @@
                 <button type="button" class="btn btn-secondary btn-block">Hmm, not that time...</button>
             </div>
         </div>
-        <div class="card mb-3">
+        <div class="card mb-3" style=>
             <img class="card-img"
                 src="https://images.pexels.com/photos/761963/pexels-photo-761963.jpeg?cs=srgb&dl=beautiful-cellphone-cute-761963.jpg&fm=jpg"
                 alt="Card image cap">
@@ -35,9 +37,47 @@
                 <p class="card-text text-center">Was your mind successfully (re)set?</p>
                 <button type="button" class="btn btn-secondary btn-block">It sure was!</button>
                 <button type="button" class="btn btn-secondary btn-block">Hmm, not that time...</button>
+
+                <div class="hover-btn" style="position: absolute; right: 15px; display: none;">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">×</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                </div>
             </div>
         </div>
-        
+
     </div>
     <div class="col-4"></div>
 </div>
+
+<script type="text/javascript">
+    $("#history-btn").on("click", function () {
+        let historyTest = $(this).text("khaleesi");
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            historyTest + "&api_key=ACXLyhgAnWu2x7cLRHvyYUobXHDiTbSP&limit=10";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (response) {
+                console.log(queryURL);
+
+                console.log(response);
+                var results = response.data;
+
+                for (var i = 0; i < results.length; i++) {
+                    let historyDiv = $('<div class="card mb-3 text-dark"><img class="card-img" alt="Mind(Re)Set History" src="'
+                        + results[i].images.fixed_height.url + '"> <div class="card-body"> <p class="card-text text-muted"> [Insert Date]</p>'
+                        + '<h5 class="card-title text-center">You started off ABC, but desired to be XYZ</h5></div>'
+                        + '<div class="card-footer text-muted align-content-center"><p class="card-text text-center">Was your mind successfully (re)set?</p>'
+                        + '<button type="button" id="reset-successful" class="btn btn-secondary btn-block">It sure was!</button>'
+                        + '<button type="button" id="reset-failed" class="btn btn-secondary btn-block">Hmm, not that time...</button></div></div>');
+
+                    $("#history-div").prepend(historyDiv);
+                }
+
+            });
+    });
+</script>

@@ -1,10 +1,30 @@
 <div id="home" class="mt-4">
-
+  <!--Modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End of Modal-->
   <div class="container">
     <div class="text-center text-light" id="intro-sentence">
       <p>
-        <h3>Feeling <em>ABC</em> is totally okay! But if you are interested in feeling <em>XYZ</em>, then we can help!
-        </h3>
+        <h4>Feeling <em>ABC</em> is totally okay! But if you are interested in feeling <em>XYZ</em>, then we can help!
+        </h4>
       </p>
 
     </div>
@@ -12,7 +32,7 @@
     <div class="row m-1 text-light">
       <div class="col text-center" id="current-state-div">
         <p>
-          <h1>How are you feeling now?</h1>
+          <h2>How are you feeling now?</h2>
         </p>
         <div class="border">
           {{> current-block }}
@@ -21,7 +41,7 @@
 
       <div class="col text-light text-center" id="desired-state-div" style="display: none;">
         <p>
-          <h1>How would you <i>like</i> to feel?</h1>
+          <h2>How would you <i>like</i> to feel?</h2>
         </p>
         <div class="border">
           {{> desired-block }}
@@ -29,12 +49,21 @@
       </div>
     </div>
 
-    {{!-- <div>
-      <a href="/results">Results</a>
-    </div> --}}
+    <div id="confirmation-div" style="display: none;">
+      <a href="/results" class="btn" id="confirmation">YES!</a>
+    </div>
+
+    <div class="text-center mt-5" style="display: none;" id="back-btn">
+        <a href="/"><h3>(re)start</h3></a>
+  </div>
 
   </div>
-</div>
+</div>  
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -86,6 +115,7 @@
   $(".swiper-slide").on("click", function () {
     $("#intro-sentence").hide();
     $("#desired-state-div").show();
+    $("#back-btn").show();
     $("#current-state-div").hide();
     let currentState = $(this).attr("data-state");
 
@@ -96,15 +126,25 @@
         let str = desiredStateArray[i].desiredState;
         changedState = str.toLowerCase();
         let stateDiv = $("<div>");
-        let showDesiredState = $('<a href="/results" id="' + changedState + '" class="btn btn-info btn-block my-3" data-state="' + changedState + '"><h3>' + "I want to feel... " + desiredStateArray[i].desiredState + "!" + "</h3></a>");
+        let showDesiredState = $('<button id="' + changedState
+         + '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-state="' + changedState
+          + '"><h3>' + "I want to feel... " + desiredStateArray[i].desiredState
+          + "!" + "</h3></button>");
         stateDiv.append(showDesiredState);
         $("#desired-state-div").append(stateDiv);
-      } else {
-        console.log("There tweren't any matching states!")
-      }
+      } 
     }
   });
 
+  {{!-- $(".blarg").on("click", function(){
+    $("#desired-state-div").hide();
+    $("#confirmation-div").show();
+    $("#confirmation-div").append("So, you're feeling " + currentState + ", and you'd rather feel " + desiredState + "?");
+  }); --}}
+
+ $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+  })
 
 
 </script>
