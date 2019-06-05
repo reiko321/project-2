@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "password1",
-    "database": "exampledb",
+    "password": "password",
+    "database": "mindreset_db",
     "host": "localhost",
     "dialect": "mysql"
   },
