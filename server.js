@@ -62,7 +62,7 @@ models.sequelize.sync().then(function () {
   console.log(err, "Something went wrong with the Database Update!")
 });
 
-app.listen(5000, function (err) {
+app.listen(PORT, function (err) {
   if (!err)
     console.log("Site is live"); else console.log(err)
 

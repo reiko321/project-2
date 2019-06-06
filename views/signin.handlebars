@@ -1,12 +1,22 @@
+<div class="text-center text-light">
+    <p>
+        <h1>Please Sign In</h1>
+    </p>
+</div>
+
 <div class="row">
     <div class="col-3 mx-auto">
         <form class="text-light bg-dark p-3" id="signin" name="signin" method="post" action="signin">
-            <label for="email">Email Address</label>
-            <input class="text" name="email" type="text" />
-            <label for="password">Password</label>
-            <input name="password" type="password" />
-            <input class="btn" type="submit" value="Sign In" />
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input class="text form-control" name="email" type="text" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" name="password" type="password" />
+            </div>
+            <input class="btn text-light bg-secondary" type="submit" value="Sign In" />
         </form>
-        
+
     </div>
 </div>
