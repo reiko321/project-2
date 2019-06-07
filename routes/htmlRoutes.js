@@ -30,7 +30,5 @@ module.exports = function(app) {
     res.render(path.join(__dirname, "../views/results.handlebars"));
   });
 
-  app.get("*", function(req, res) {
-    res.render("../views/index.handlebars");
-  });
+  
 };
