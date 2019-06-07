@@ -4,7 +4,7 @@ var exphbs = require("express-handlebars");
 var passport = require('passport');
 var cookieSession = require("cookie-session");
 var bodyParser = require('body-parser');
-const passportSetup = require("./config/passport/passport.js");
+require("./config/passport/passportConfig.js");
 const keys = require("./config/key");
 var db = require("./models");
 var app = express();
@@ -23,27 +23,12 @@ app.use(cookieSession({
   keys: [keys.session.cookieKey]
 
 }));
-//Routes
-var authRoute = require('./routes/authRoutes.js');
-
-//set auth route
-app.use("/auth", authRoute);
-
-
-
-
-//load passport strategies
-require('./config/passport/passport.js')(passport, db.user);
 
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
-
-
-// Added this static route to use the Slider library-->
-app.use("/scripts", express.static(__dirname + "./node_modules/swiper/dist/"));
 
 // Handlebars
 app.engine(
@@ -53,6 +38,15 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+
+// Added this static route to use the Slider library-->
+app.use("/scripts", express.static(__dirname + "./node_modules/swiper/dist/"));
+
+//Routes
+var authRoute = require('./routes/authRoutes.js');
+
+//set auth route
+app.use("/auth", authRoute);
 
 // Routes
 //require("./routes/apiRoutes")(app);
@@ -72,8 +66,3 @@ db.sequelize.sync({ force: false }).then(function () {
     console.log("App listening on PORT " + PORT);
   });
 });
-
-
-
-
-module.exports = app;
