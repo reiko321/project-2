@@ -2,34 +2,46 @@ require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var passport = require('passport');
-var session = require('express-session');
+var cookieSession = require("cookie-session");
 var bodyParser = require('body-parser');
-//var db = require("./models");
+const passportSetup = require("./config/passport/passport.js");
+const keys = require("./config/key");
+var db = require("./models");
 var app = express();
-var PORT = process.env.PORT || 5000;
+var PORT = process.env.PORT || 3000;
 
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// For Passport
-app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
+//initialize passport
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session());
 
-//Models
-var models = require("./models");
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [keys.session.cookieKey]
 
+}));
 //Routes
-var authRoute = require('./routes/authRoutes.js')(app, passport);
+var authRoute = require('./routes/authRoutes.js');
+
+//set auth route
+app.use("/auth", authRoute);
+
+
+
 
 //load passport strategies
-require('./config/passport/passport.js')(passport, models.user);
+require('./config/passport/passport.js')(passport, db.user);
+
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
+
+
 // Added this static route to use the Slider library-->
 app.use("/scripts", express.static(__dirname + "./node_modules/swiper/dist/"));
 
@@ -43,7 +55,7 @@ app.engine(
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app);
+//require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 var syncOptions = { force: false };
@@ -54,18 +66,14 @@ if (process.env.NODE_ENV === "test") {
   syncOptions.force = true;
 }
 
-//Sync Database
-models.sequelize.sync().then(function () {
-  console.log('Nice! Database looks fine')
-
-}).catch(function (err) {
-  console.log(err, "Something went wrong with the Database Update!")
+// Syncing our sequelize models and then starting our express app
+db.sequelize.sync({ force: false }).then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+  });
 });
 
-app.listen(PORT, function (err) {
-  if (!err)
-    console.log("Site is live"); else console.log(err)
 
-});
+
 
 module.exports = app;
