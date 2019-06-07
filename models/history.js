@@ -1,42 +1,51 @@
 module.exports = function (sequelize, DataTypes) {
-  const History = sequelize.define("history",
-    {
-        id: {
+  var History = sequelize.define("history", {
+    id:
+         {
         type: DataTypes.INTEGER,
         allowNull: false,
+        primaryKey: true
         },
-      current_state: {
+      current_state: 
+      {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
+        validate: 
+        {
           len: [1, 160]
-        },
-        desired_state: {
+        }
+      },
+        desired_state: 
+        {
           type: DataTypes.STRING,
           allowNull: false,
-          validate: {
+          validate: 
+          {
             len: [1, 160]
           }
         },
-        selected_results: {
+        selected_results: 
+        {
           type: DataTypes.STRING,
           allowNull: false,
-          validate: {
+          validate: 
+          {
             len: [1, 160]
           }
         },
-        successful: {
+        successful: 
+        {
           type: DataTypes.BOOLEAN,
           allowNull: false,
           defaultValue: true
-        },
+        }
+  }, {
 
-      },
-  {
-      freezeTableName: true,
-      underscored: true
-    });
+    freezeTableName: true,
+    underscored: true
+
+
+  });
 
   return History;
 };
-

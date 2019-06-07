@@ -6,7 +6,7 @@
 // =============================================================
 
 // Requiring our History model
-var db = require("./models");
+var db = require("../models");
 
 // Routes
 // =============================================================
@@ -54,20 +54,21 @@ module.exports = function (app) {
       });
   });
 
- // PUT route for updating from history page.
+  // PUT route for updating from history page.
   app.post("/api/history", function (req, res) {
     console.log(req.body);
     // create takes an argument of an object describing the item we want to
     // insert into our table. In this case we just we pass in an object with a text
     // and complete property (req.body)
     db.History
-    .update(req.body, {
-      where: {
-        successful: req.body.successful
-      }
-    })
-    .then(function (results) {
-      res.json(results);
+      .update(req.body, {
+        where: {
+          successful: req.body.successful
+        }
+      })
+      .then(function (results) {
+        res.json(results);
+      });
   });
 
   // DELETE route for deleting entries. We can get the id of the entry we want to delete from
