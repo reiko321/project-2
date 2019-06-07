@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "mindreset_db",
-    "host": "localhost",
+    "username": "h61mydqytnadx17m",
+    "password": "lqdfkigbi5pp52lk",
+    "database": "v4xxlrwwqo5vat1w",
+    "host": "hngomrlb3vfq3jcr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
