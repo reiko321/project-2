@@ -1,4 +1,5 @@
 var db = require("../models");
+var queryMovies = require("queryMovies");
 
 module.exports = function(app) {
 
@@ -21,5 +22,9 @@ module.exports = function(app) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
       res.json(dbExample);
     });
+  });
+
+  app.post("api/movies", function(req, res){
+    console.log(req);
   });
 };
