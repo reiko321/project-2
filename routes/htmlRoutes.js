@@ -3,7 +3,7 @@ var path = require("path");
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.render(path.join(__dirname, "../views/index.handlebars"));
+    res.render("index");
   });
   // app.get("/", function(req, res, next) {
   //   res.render("index", { layout: false });
@@ -12,25 +12,25 @@ module.exports = function(app) {
   // Render Other Pages
   // the actual "db" content ntb edited/updated
   app.get("/results", function(req, res) {
-    res.render(path.join(__dirname, "../views/results.handlebars"));
+    res.render("results");
   });
   app.get("/history", function(req, res) {
-    res.render(path.join(__dirname, "../views/history.handlebars"));
+    res.render("history");
   });
   app.get("/about", function(req, res) {
-    res.render(path.join(__dirname, "../views/about.handlebars"));
+    res.render("about");
   });
   app.get("/other-resources", function(req, res) {
-    res.render(path.join(__dirname, "../views/other-resources.handlebars"));
+    res.render("other-resources");
   });
   app.get("/signin", function(req, res) {
-    res.render(path.join(__dirname, "../views/signin.handlebars"));
+    res.render("signin");
   });
   app.get("/signup", function(req, res) {
-    res.render(path.join(__dirname, "../views/results.handlebars"));
+    res.render("results");
   });
 
   app.get("*", function(req, res) {
-    res.render("../views/index.handlebars");
+    res.render("index");
   });
 };
