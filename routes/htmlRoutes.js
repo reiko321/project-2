@@ -29,4 +29,7 @@ module.exports = function(app) {
   app.get("/signup", function(req, res) {
     res.render("results");
   });
+  app.get("*", function(req, res) {
+    res.render("index");
+  });
 }
