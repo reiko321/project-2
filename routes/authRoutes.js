@@ -1,33 +1,28 @@
-var authController = require("../controller/authcontroller.js");
+const router = require("express").Router();
+const passport = require("passport");
+var authController = require('../controller/authcontroller.js');
 
-module.exports = function(app, passport) {
-  app.get("/signup", authController.signup);
+router.get("/signin", (req, res) => {
+    res.render("signin");
+})
 
-  app.get("/signin", authController.signin);
 
-  app.post(
-    "/signup",
-    passport.authenticate("local-signup", {
-      successRedirect: "/",
-      failureRedirect: "/signup"
-    })
-  );
+//logout
 
-  app.get("/dashboard", isLoggedIn, authController.dashboard);
+router.get("/logout", (req, res) => {
 
-  app.get("/logout", authController.logout);
+    //handle with passport
+    res.send("logging out");
+});
+//auth with google
+router.get("/google", passport.authenticate("google", {
+    scope: ["profile"]
+}));
 
-  app.post(
-    "/signin",
-    passport.authenticate("local-signin", {
-      successRedirect: "/",
-      failureRedirect: "/signin"
-    })
-  );
+//callback route for google to redirect to
+router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
+    
+    res.send(req.user);
+})
 
-  function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) return next();
-
-    res.redirect("/signin");
-  }
-};
+module.exports = router;
