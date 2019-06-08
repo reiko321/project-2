@@ -1,5 +1,5 @@
 // var $currentStateBtn = $();
-$(document).ready(function () {
+$(document).ready(function() {
   $("#desired-state-div").hide();
 
   let desiredStateArray = [
@@ -35,7 +35,7 @@ $(document).ready(function () {
     }
   ];
 
-  $(".swiper-slide").on("click", function () {
+  $(".swiper-slide").on("click", function() {
     $("#intro-sentence").hide();
     $("#desired-state-div").show();
     $("#back-btn").show();
@@ -50,14 +50,14 @@ $(document).ready(function () {
         let stateDiv = $("<div>");
         let showDesiredState = $(
           '<button id="' +
-          changedState +
-          '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-state="' +
-          changedState +
-          '"><h3>' +
-          "I want to feel... " +
-          desiredStateArray[i].desiredState +
-          "!" +
-          "</h3></button>"
+            changedState +
+            '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-state="' +
+            changedState +
+            '"><h3>' +
+            "I want to feel... " +
+            desiredStateArray[i].desiredState +
+            "!" +
+            "</h3></button>"
         );
         stateDiv.append(showDesiredState);
         $("#desired-state-div").append(stateDiv);
@@ -68,29 +68,39 @@ $(document).ready(function () {
     }
   });
 
-  $("#myModal").on("shown.bs.modal", function () {
+  $("#myModal").on("shown.bs.modal", function() {
     $("#myInput").trigger("focus");
   });
 
-  $("#confirm").on("click", function () {
+  $("#confirm").on("click", function() {
     let resultOne = $(this).attr("data-desired-push");
+
+    var queryURL =
+      "https://api.giphy.com/v1/gifs/search?q=" +
+      resultOne +
+      "&api_key=ACXLyhgAnWu2x7cLRHvyYUobXHDiTbSP&limit=5";
     console.log("Result One: " + resultOne);
-
     $.ajax({
-      url: '/results',
-      // dataType: "jsonp",
-      data: '{"data": "TEST"}',
-      type: 'POST',
-      jsonpCallback: 'callback', // this is not relevant to the POST anymore
-      success: function (data) {
-        var ret = jQuery.parseJSON(data);
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(queryURL);
 
-      },
-      error: function (xhr, status, error) {
-        console.log('Error: ' + error.message);
+      console.log(response);
+      var results = response.data;
 
-      },
+      for (var i = 0; i < results.length; i++) {
+        let resultDiv = $(
+          '<div class="card mb-1 text-dark" style="max-width: 202px;"><img class="card-img-top" alt="Mind(Re)Set Result" src="' +
+            results[i].images.fixed_height.url +
+            '"> <div class="card-body"> <h3 class="card-title">' +
+            results[i].rating +
+            '</h3> <p class="card-text">' +
+            results[i].rating +
+            "</p> </div> </div>"
+        );
+        $("#results-one-div").append(resultDiv);
+      }
     });
-
   });
 });
