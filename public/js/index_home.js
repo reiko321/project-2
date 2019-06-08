@@ -52,11 +52,11 @@ $(document).ready(function() {
             changedState +
             '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-state="' +
             changedState +
-            '"><h3>' +
+            '"><h2>' +
             "I want to feel... " +
             desiredStateArray[i].desiredState +
             "!" +
-            "</h3></button>"
+            "</h2></button>"
         );
         stateDiv.append(showDesiredState);
         $("#desired-state-div").append(stateDiv);
@@ -71,6 +71,11 @@ $(document).ready(function() {
     $("#myInput").trigger("focus");
   });
 
+  var glow = $("#feeling-now");
+  setInterval(function() {
+    glow.toggleClass("glow");
+  }, 1000);
+
   // $("#results-display").on("click", function(){
   //   $.ajax("/api/movies" {
   //     type: "GET",
@@ -81,13 +86,6 @@ $(document).ready(function() {
   //     }
   //   )
   // });
-
-
-
-
-
-
-
 
   //Previous Attempts...
   //================================================

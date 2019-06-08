@@ -30,11 +30,13 @@
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 8px 20px 0 rgba(0,0,0,0.2), 0 8px 22px 0 rgba(0,0,0,0.19);
+
 }
 
 .swiper-slide {
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   background: #fff;
   /* Center slide text vertically */
   display: -webkit-box;
@@ -51,7 +53,7 @@
   align-items: center;
 }
 
-body h1 h2 h3 h4 h5 h6 p span {
+body h1 h2 h3 h4 h5 h6 p a span {
   /* font-family: 'Kanit', sans-serif;*/
   font-family: 'Catamaran', sans-serif;
   /* font-family: 'Antic', sans-serif;*/
@@ -60,13 +62,6 @@ body h1 h2 h3 h4 h5 h6 p span {
   /* font-family: 'Istok Web', sans-serif; */
 }
 
-#nostalgic {
-  background-image: linear-gradient (rgb(18, 91, 107), rgb(18, 91, 107));
-  /* height:100; 
-  padding-top: 90px; 
-  background: rgb(18, 91, 107);
-  background-image: radial-gradient(ellipse 50% 90% at 50% 20% , rgb(206, 51, 111) 0%, rgb(18, 91, 107) 100%); */
-}
 
 #angry {
   background-image: linear-gradient(red, yellow);
@@ -102,6 +97,22 @@ body h1 h2 h3 h4 h5 h6 p span {
   
 }
 
+.btn-block {
+  height: 150px;
+}
+
 .btn-block .btn-primary .btn-secondary {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#feeling-now {
+  -webkit-transition: text-shadow 1s linear;
+  -moz-transition: text-shadow 1s linear;
+  -ms-transition: text-shadow 1s linear;
+  -o-transition: text-shadow 1s linear;
+  transition: text-shadow 1s linear;
+}
+#feeling-now:hover,
+#feeling-now.glow {
+  text-shadow: 0 0 10px black;
 }

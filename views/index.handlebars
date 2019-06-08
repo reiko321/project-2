@@ -4,19 +4,19 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">You would like to be...</h5>
+        <div class="modal-header bg-dark">
+          <h5 class="modal-title text-light" id="exampleModalLabel">You would like to be...</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-center">
+        <div class="modal-body text-center p-4">
           <h2 class="modal-text"><span id="modal-span"></span></h2>
         </div>
-        <div class="modal-footer">
-          <button type="btn" class="btn btn-secondary" data-dismiss="modal">Let me think about it...</button>
+        <div class="modal-footer bg-light center-content">
+          <button type="btn" class="btn btn-warning" data-dismiss="modal">I've Reconsidered</button>
           <a href="/results" type="btn" id="confirm" data-current-push="current" data-desired-push="desired"
-            class="btn btn-primary">YES, PLEASE!!</a>
+            class="btn btn-success">Yes, Please</a>
         </div>
       </div>
     </div>
@@ -25,16 +25,19 @@
   <div class="container">
     <div class="text-center text-light" id="intro-sentence">
       <p>
-        <h4>Feeling <em>ABC</em> is totally okay! But if you are interested in feeling <em>XYZ</em>, then we can help!
-        </h4>
+        <h3>Feeling any which way is totally okay!</h3>
       </p>
+      <p>
+        <h4>However... if you are interested in adjusting your mindset, we just might be able to help!
+        </h4>
+        <p />
 
     </div>
 
     <div class="row m-1 text-light">
       <div class="col text-center" id="current-state-div">
         <p>
-          <h2>How are you feeling now?</h2>
+          <h2><span id="feeling-now">How are you feeling now?</span></h2>
         </p>
         <div class="border">
           {{> current-block }}
@@ -55,9 +58,9 @@
       <a href="/results" class="btn" id="confirmation">YES!</a>
     </div>
 
-    <div class="text-center mt-5" style="display: none;" id="back-btn">
+    <div class="text-center mt-5 text-light" style="display: none;" id="back-btn">
       <a href="/">
-        <h3>(re)start</h3>
+        <h2>(re)start</h2>
       </a>
     </div>
 
