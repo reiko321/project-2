@@ -1,13 +1,31 @@
 <div class="text-secondary">
   <div class="swiper-container" style="height:200px;">
     <div class="swiper-wrapper">
-      <div class="swiper-slide bg-warning text-dark" id="happy" data-state="happy"><h3>Happy :)</h3></div>
-      <div class="swiper-slide bg-secondary text-light" id="bored" data-state="bored"><h3>Bored :/</h3></div>
-      <div class="swiper-slide bg-dark text-light" id="sad" data-state="sad"><h3>Sad :(</h3></div>
-      <div class="swiper-slide" id="stressed" data-state="stressed"><h3>Stressed!</h3></div>
-      <div class="swiper-slide" id="nostalgic" data-state="nostalgic"><h3>Nostalgic</h3></div>
-      <div class="swiper-slide" id="poopy" data-state="poopy"><h3>Poopy</h3></div>
-      <div class="swiper-slide" id="euphoric" data-state="euphoric"><h3>Euphoric</h3></div>
+      <div class="swiper-slide bg-warning text-dark" id="happy" data-state="happy">
+        <h3>Happy <span>&#x1F600</span></h3>
+      </div>
+      <div class="swiper-slide text-dark" id="bored" data-state="bored">
+        <h3>Bored <span>&#x1F610</span></h3>
+      </div>
+      <div class="swiper-slide text-light" id="sad" data-state="sad">
+        <h3>Sad <span>&#x1F622</span></h3>
+      </div>
+      <div class="swiper-slide text-dark" id="stressed" data-state="stressed">
+        <h3>Stressed!<span>&#x1F631</span></h3>
+      </div>
+      <div class="swiper-slide" id="nostalgic" data-state="nostalgic">
+        <h3>Nostalgic <span>&#x1F563</span></h3>
+      </div>
+      <div class="swiper-slide" id="angry" data-state="angry">
+        <h3>Angry<span>&#x1F624</span></h3>
+      </div>
+      <div class="swiper-slide" id="disgusted" data-state="disgusted">
+        <h3>Disgusted<span>&#x1F92E</span></h3>
+      </div>
+      <div class="swiper-slide" id="fearful" data-state="fearful">
+        <h3>Fearful<span>&#x1F628</span></h3>
+      </div>
+
 
     </div>
     <!-- Add Pagination -->
@@ -19,16 +37,16 @@
 <!-- Initialize Swiper -->
 <script>
   var swiper = new Swiper('.swiper-container', {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      loop: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
 </script>

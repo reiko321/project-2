@@ -3,7 +3,6 @@
         <h1>Your <strong>Mind(Re)Set</strong> History
         </h1>
     </p>
-    <button id="history-btn" class="btn btn-info">Show My History</button>
 </div>
 
 
@@ -14,7 +13,7 @@
     <div class="col-4" id="history-div">
 
         <!--Original Card Template-->
-        <!-- <div class="card mb-3">
+        <div class="card mb-3">
             <img class="card-img"
                 src="https://images.pexels.com/photos/320007/pexels-photo-320007.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
                 alt="Card image cap">
@@ -48,14 +47,14 @@
                     </button>
                 </div>
             </div>
-        </div> -->
+        </div>
 
     </div>
     <div class="col-4"></div>
 </div>
 
 <script type="text/javascript">
-    $("#history-btn").on("click", function () {
+    {{!-- $("#history-btn").on("click", function () {
         let historyTest = $(this).text("khaleesi");
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -82,5 +81,5 @@
                 }
 
             });
-    });
+    }); --}}
 </script>
