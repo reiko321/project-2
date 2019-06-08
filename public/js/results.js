@@ -88,7 +88,7 @@ $(document).ready(function() {
     for (let i = 0; i < movieArray.length; i++) {
       if (randomDesiredState === movieArray[i].desiredState) {
         let title = movieArray[i].movieTitle;
-        var firstPart = "http://www.omdbapi.com/?t=";
+        var firstPart = "https://www.omdbapi.com/?t=";
 
         var secondPart = "&y=&plot=short&apikey=cd5d920a";
         var combine = firstPart + title + secondPart;
@@ -115,7 +115,7 @@ $(document).ready(function() {
     }
 
     $.ajax({
-      url: "http://api.icndb.com/jokes/random",
+      url: "https://api.icndb.com/jokes/random",
       method: "GET"
     }).then(function(responseNorris) {
         // console.log(responseNorris.value.joke);
