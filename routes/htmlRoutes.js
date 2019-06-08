@@ -7,6 +7,10 @@ var spotify = new Spotify({
   secret: "c63db428d5f74e15ad12a61d6b58bf4b"
 });
 
+let axios = require("axios");
+
+
+
 var resultFunctions = {
 
   getMeASong: function getMeASong(res) {
@@ -38,18 +42,9 @@ var resultFunctions = {
           return
         }
         sendHbs(combine);
-
-
-
-
-
       }
     )
   }
-
-
-
-
 }
 
 
@@ -65,46 +60,11 @@ module.exports = function (app) {
   // Render Other Pages
   // the actual "db" content ntb edited/updated
   app.get("/results", function (req, res) {
-    /* function getMeASong() {
-      spotify.search(
-        {
-          type: "playlist",
-          query: "happy",
-          limit: 1
-        },
-        function (err, data) {
-          if (err) {
-            return console.log("Error occurred: " + err);
-          }
-          //console.log(data.playlists.items);
-          console.log(data.playlists.items[0].external_urls.spotify);
-
-          var song = data.playlists.items[0].external_urls.spotify;
-          var firstPart = song.slice(0, 24);
-          var secondPart = song.slice(34, 56)
-          var combine = firstPart + "/embed/playlist/" + secondPart;
-          console.log(combine);
-
-          function sendHbs(combine) {
-            var hbsObject = {
-              combine: combine
-            };
-            console.log(hbsObject);
-            res.render("results", hbsObject);
-            return
-          }
-          sendHbs(combine);
-
-
-
-
-
-        }
-      )
-    } */
-
 
     resultFunctions.getMeASong(res);
+
+
+
   });
   app.get("/history", function (req, res) {
     res.render("history");
