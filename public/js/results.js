@@ -89,6 +89,7 @@ $(document).ready(function() {
       if (randomDesiredState === movieArray[i].desiredState) {
         let title = movieArray[i].movieTitle;
         var firstPart = "http://www.omdbapi.com/?t=";
+
         var secondPart = "&y=&plot=short&apikey=cd5d920a";
         var combine = firstPart + title + secondPart;
 
