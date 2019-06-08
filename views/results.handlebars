@@ -4,7 +4,7 @@
     </p>
 </div>
 
-<button class="btn" data-state="amused">Button!</button>
+<button class="btn" id="results-display" data-desired-push="entertained">Button!</button>
 <div class="row m-1 text-center text-light">
 
     <div class="col 4">
@@ -50,9 +50,9 @@
     </a>
 </div>
 
-
+<script src="/js/results.js"></script>
 <script type="text/javascript">
-    $("button").on("click", function () {
+    {{!-- $("button").on("click", function () {
         let resultOne = $(this).attr("data-state");
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -75,5 +75,5 @@
                 }
 
             });
-    });
+    }); --}}
 </script>

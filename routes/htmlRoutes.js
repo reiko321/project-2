@@ -56,10 +56,7 @@ module.exports = function (app) {
   app.get("/", function (req, res) {
     res.render("index");
   });
-  // app.get("/", function(req, res, next) {
-  //   res.render("index", { layout: false });
-  // });
-
+  
   // Render Other Pages
   // the actual "db" content ntb edited/updated
   app.get("/results", function (req, res) {
