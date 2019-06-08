@@ -60,10 +60,16 @@ $(document).ready(function() {
         );
         stateDiv.append(showDesiredState);
         $("#desired-state-div").append(stateDiv);
-        $("#modal-span").text(desiredStateArray[i].desiredState);
-        $("#confirm").attr("data-current-push", currentState);
-        $("#confirm").attr("data-desired-push", changedState);
+
+        
+
+        
       }
+      $(".btn-block").on("click", function(){
+        $("#modal-span").text(desiredStateArray[i].desiredState);
+        $("#confirm-state").attr("data-current-push", currentState);
+        $("#confirm-state").attr("data-desired-push", changedState);
+      });
     }
   });
 
@@ -75,6 +81,31 @@ $(document).ready(function() {
   setInterval(function() {
     glow.toggleClass("glow");
   }, 1000);
+
+  $("#delete-history-one").on("click", function(){
+      $("#history-card-one").hide();
+  });
+
+  $("#delete-history-two").on("click", function(){
+    $("#history-card-two").hide();
+  });
+
+  $("#delete-history-three").on("click", function(){
+    $("#history-card-three").hide();
+  });
+
+  $("#delete-history-four").on("click", function(){
+    $("#history-card-four").hide();
+  });
+
+ 
+  // var queryState
+  // $("#confirm-state").on("click", function(){
+  //   queryState = $(this).attr("#data-desired-push");
+  //   // $(queryState).attr("#data-desired-push");
+  //   console.log("Query State: " + queryState);
+  // });
+  
 
   // $("#results-display").on("click", function(){
   //   $.ajax("/api/movies" {
