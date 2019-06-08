@@ -14,10 +14,14 @@ let axios = require("axios");
 var resultFunctions = {
 
   getMeASong: function getMeASong(res) {
+
+    var moodArray = ["happy", "cheery", "inspired", "motivated"];
+    var decider = Math.floor(Math.random() * 3);
+    var mood = moodArray[decider];
     spotify.search(
       {
         type: "playlist",
-        query: "happy",
+        query: mood,
         limit: 1
       },
       function (err, data) {
