@@ -1,41 +1,60 @@
 <div class="text-center text-light">
     <p>
-        <h4>Please consider the following resources to (re)set!</h4>
+        <h3>Check out some of the ways you might <span id="feeling-now">(Re)Set!</span></h3>
     </p>
 </div>
 
-<button class="btn" id="results-display" data-desired-push="entertained">Button!</button>
+{{!-- <button class="btn" id="results-display" data-desired-push="entertained">Button!</button> --}}
 <div class="row m-1 text-center text-light">
 
-    <div class="col 4">
+    <div class="col-4">
         <div>
             <p>
-                <h4>Spotify Playlist:</h4>
+                <h4>Mood-Shifting Playlist</h4>
             </p>
         </div>
         <div id="results-one-div">
 
-<br> <br>
-<iframe src="{{combine}}" width="300" height="450" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-
+           <div class="my-2">
+                <iframe src="{{combine}}" width="300" height="450" frameborder="0" allowtransparency="true"
+                    allow="encrypted-media"></iframe>
+           </div>
 
         </div>
     </div>
-    <div class="col 4">
-        <div>
+    <div class="col-4 justify-content-center">
+        <div class="mx-auto">
             <p>
-                <h4>OMDB Movie:</h4>
+                <h4>Mind (Re)Setting Movies</h4>
             </p>
         </div>
-        <div id="results-two-div">
+        <div class="align-content-center text-center" id="results-two-div">
+            {{!-- <div class="swipers-container" style="width: 600px; height: 800px; padding: 50px;">
+                <div class="swipers-wrapper">
 
-            <p id="movieTitle"></p>
-            <p id="movieGenre"></p>
-            <img id="moviePoster" src=""></img>
-            
+
+
+
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div> --}}
         </div>
+
     </div>
-    
+    <div class="col-4 justify-content-center">
+        <div class="mx-auto">
+            <p>
+                <h4>Don't Forget: The Inspirational Quotes!</h4>
+            </p>
+        </div>
+        <div class="align-content-center text-center" id="results-three-div"></div>
+    </div>
+
+</div>
+
 </div>
 <div class="text-center mt-5">
     <a href="/">
@@ -45,5 +64,16 @@
 
 <script src="/js/results.js"></script>
 <script type="text/javascript">
-    
+    {{!-- var swipers = new Swiper('.swipers-container', {
+        effect: 'flip',
+        grabCursor: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    }); --}}
 </script>
