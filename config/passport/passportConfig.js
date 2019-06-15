@@ -3,16 +3,16 @@ const GoogleStrategy = require("passport-google-oauth20");
 const keys = require("../key");
 const db = require("../../models");
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((User, done) => {
 
-  done(null, user.id);
+  done(null, User.id);
 
 });
 
 passport.deserializeUser((id, done) => {
-  db.user.findByPk(id).then((user) => {
+  db.user.findByPk(id).then((User) => {
 
-    done(null, user);
+    done(null, User);
   });
 });
 
@@ -30,7 +30,7 @@ passport.use(
     //passport callback
     console.log("passport callback function fired");
 
-    db.user
+    db.User
       .findOne({
         where:
         {
@@ -46,7 +46,7 @@ passport.use(
         }
         else {
 
-          db.user.create({
+          db.User.create({
             googleID: profile.id,
             displayName: profile.displayName
           })

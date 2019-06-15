@@ -5,6 +5,6 @@ module.exports = {
     },
 
     session: {
-        cookieKey: "randomStringKee"
+        cookieKey: "randomStringKey"
     }
 }
