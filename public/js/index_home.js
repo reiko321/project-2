@@ -59,7 +59,7 @@ $(document).ready(function() {
         // Create the "Desired State" buttons
         let stateDiv = $("<div>");
         let showDesiredState = $(
-          '<button data-desired-state="' +
+          '<button data-state="desired" data-desired-state="' +
             changedState +
             '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-orig-state="' +
             currentState +
@@ -74,24 +74,19 @@ $(document).ready(function() {
         // Pushes results to the HTML
         $("#desired-state-div").append(stateDiv);
       }
-
-      
     }
-  });
-  // Triggers the Modal and Pushes Relevant Data Classes for Database Capture
-  $(".btn-info").on("click", function() {
-    event.preventDefault();
-    var updateCurrent = $(this).attr("data-orig-state");
-    var updateDesired = $(this).attr("data-desired-state");
-    console.log("blah: " + updateCurrent + " " + updateDesired);
-    $("#modal-span").text($(this).attr("data-desired-state"));
-    // var modalCurr = $("data-current-push").attr(updateCurrent);
-    // var modalDesi = $("data-desired-push").attr(updateDesired);
-
-    
-    $("#confirm-state").attr("data-current-push"), updateCurrent;
-    $("#confirm-state").attr("data-desired-push"), updateDesired;
-    
+    // Triggers the Modal and Pushes Relevant Data Classes for Database Capture
+    $('button[data-state="desired"]').on("click", function() {
+      event.preventDefault();
+      var updateCurrent = $(this).attr("data-orig-state");
+      var updateDesired = $(this).attr("data-desired-state");
+      console.log("blah: " + updateCurrent + " " + updateDesired);
+      $("#modal-span").text($(this).attr("data-desired-state"));
+      $("#confirm-state").attr("data-current-push",
+        updateCurrent);
+      $("#confirm-state").attr("data-desired-push",
+        updateDesired);
+    });
   });
 
   $("#myModal").on("shown.bs.modal", function() {
@@ -119,7 +114,7 @@ $(document).ready(function() {
     $.ajax({
       url: "/api/states",
       type: "POST",
-      data: JSON.stringify(newStates)
+      data: (newStates)
     });
     console.log(newStates);
   });

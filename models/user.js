@@ -1,6 +1,5 @@
-module.exports = function (sequelize, Sequelize) {
-
-  var User = sequelize.define('User', {
+module.exports = function(sequelize, Sequelize) {
+  var User = sequelize.define("User", {
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -22,13 +21,12 @@ module.exports = function (sequelize, Sequelize) {
     },
 
     status: {
-      type: Sequelize.ENUM('active', 'inactive'),
-      defaultValue: 'active'
+      type: Sequelize.ENUM("active", "inactive"),
+      defaultValue: "active"
     }
-
   });
-
+  User.associate = function(models) {
+    User.hasMany(models.History);
+  };
   return User;
-
-}
-
+};
