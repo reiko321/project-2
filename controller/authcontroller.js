@@ -1,28 +1,19 @@
-var exports = module.exports = {}
+var exports = (module.exports = {});
 
+exports.signup = function(req, res) {
+  res.render("signup");
+};
 
-exports.signup = function(req,res){
+exports.signin = function(req, res) {
+  res.render("signin");
+};
 
-	res.render('signup'); 
+exports.dashboard = function(req, res) {
+  res.render("index");
+};
 
-}
-
-exports.signin = function(req,res){
-
-	res.render('signin'); 
-
-}
-
-exports.dashboard = function(req,res){
-
-	res.render('index'); 
-
-}
-
-exports.logout = function(req,res){
-
+exports.logout = function(req, res) {
   req.session.destroy(function(err) {
-  res.redirect('/');
+    res.redirect("/");
   });
-
-}
+};

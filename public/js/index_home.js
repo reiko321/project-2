@@ -1,6 +1,8 @@
+let currentState;
+let desiredState;
 $(document).ready(function() {
   $("#desired-state-div").hide();
-
+  // Array stores all of the current state options
   let desiredStateArray = [
     {
       desiredState: "Entertained",
@@ -34,24 +36,33 @@ $(document).ready(function() {
     }
   ];
 
+  // Slider/Swiper On-Click triggers the User Choice-Specific Options
   $(".swiper-slide").on("click", function() {
+    // Hides/Shows Appropriate Divs/Content
     $("#intro-sentence").hide();
     $("#desired-state-div").show();
     $("#back-btn").show();
     $("#current-state-div").hide();
+
+    // Obtains the User's Choice for "How Are You Feeling Now?" AKA: the Current State
     let currentState = $(this).attr("data-state");
 
+    // For-Loop to List Out the Context-Specific "How Would You Like to Feel" choices, AKA: the Desired State
     for (let i = 0; i < desiredStateArray.length; i++) {
+      // Checks to see if the User Choice matches with one (or more) Keys in the Desired State Array
       if (currentState === desiredStateArray[i].origState) {
-        let changedState;
+        // Makes the Desired State lowercase for "data-class" purposes
         let str = desiredStateArray[i].desiredState;
-        changedState = str.toLowerCase();
+        let changedState = str.toLowerCase();
+        console.log("CS: " + changedState);
+
+        // Create the "Desired State" buttons
         let stateDiv = $("<div>");
         let showDesiredState = $(
-          '<button id="' +
+          '<button data-desired-state="' +
             changedState +
-            '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-state="' +
-            changedState +
+            '" class="btn btn-info btn-block my-3" data-toggle="modal" data-target="#exampleModal" data-shown="div-show" data-orig-state="' +
+            currentState +
             '"><h2>' +
             "I want to feel... " +
             desiredStateArray[i].desiredState +
@@ -59,18 +70,28 @@ $(document).ready(function() {
             "</h2></button>"
         );
         stateDiv.append(showDesiredState);
+
+        // Pushes results to the HTML
         $("#desired-state-div").append(stateDiv);
-
-        
-
-        
       }
-      $(".btn-block").on("click", function(){
-        $("#modal-span").text(desiredStateArray[i].desiredState);
-        $("#confirm-state").attr("data-current-push", currentState);
-        $("#confirm-state").attr("data-desired-push", changedState);
-      });
+
+      
     }
+  });
+  // Triggers the Modal and Pushes Relevant Data Classes for Database Capture
+  $(".btn-info").on("click", function() {
+    event.preventDefault();
+    var updateCurrent = $(this).attr("data-orig-state");
+    var updateDesired = $(this).attr("data-desired-state");
+    console.log("blah: " + updateCurrent + " " + updateDesired);
+    $("#modal-span").text($(this).attr("data-desired-state"));
+    // var modalCurr = $("data-current-push").attr(updateCurrent);
+    // var modalDesi = $("data-desired-push").attr(updateDesired);
+
+    
+    $("#confirm-state").attr("data-current-push"), updateCurrent;
+    $("#confirm-state").attr("data-desired-push"), updateDesired;
+    
   });
 
   $("#myModal").on("shown.bs.modal", function() {
@@ -82,103 +103,24 @@ $(document).ready(function() {
     glow.toggleClass("glow");
   }, 1000);
 
-  $("#delete-history-one").on("click", function(){
-      $("#history-card-one").hide();
+  // var API = {
+  //   uploadStates: function(newStats)
+  // }
+
+  $("#confirm-state").on("click", function() {
+    event.preventDefault();
+
+    currentState = $("#confirm-state").attr("data-current-push");
+    desiredState = $("#confirm-state").attr("data-desired-push");
+    let newStates = {
+      currentState: currentState,
+      desiredState: desiredState
+    };
+    $.ajax({
+      url: "/api/states",
+      type: "POST",
+      data: JSON.stringify(newStates)
+    });
+    console.log(newStates);
   });
-
-  $("#delete-history-two").on("click", function(){
-    $("#history-card-two").hide();
-  });
-
-  $("#delete-history-three").on("click", function(){
-    $("#history-card-three").hide();
-  });
-
-  $("#delete-history-four").on("click", function(){
-    $("#history-card-four").hide();
-  });
-
- 
-  // var queryState
-  // $("#confirm-state").on("click", function(){
-  //   queryState = $(this).attr("#data-desired-push");
-  //   // $(queryState).attr("#data-desired-push");
-  //   console.log("Query State: " + queryState);
-  // });
-  
-
-  // $("#results-display").on("click", function(){
-  //   $.ajax("/api/movies" {
-  //     type: "GET",
-  //     title: "Aliens"
-  //   }).then(
-  //     function(){
-  //       console.log("GAME OVER, MAN!");
-  //     }
-  //   )
-  // });
-
-  //Previous Attempts...
-  //================================================
-  // $("#confirm").on("click", function() {
-  //   let resultOne = $(this).attr("data-desired-push");
-
-  //   var queryURL =
-  //     "https://api.giphy.com/v1/gifs/search?q=" +
-  //     resultOne +
-  //     "&api_key=ACXLyhgAnWu2x7cLRHvyYUobXHDiTbSP&limit=5";
-  //   console.log("Result One: " + resultOne);
-  //   $.ajax({
-  //     url: queryURL,
-  //     method: "GET"
-  //   }).then(function(response) {
-  //     console.log(queryURL);
-
-  //     console.log(response);
-  //     var results = response.data;
-
-  //     for (var i = 0; i < results.length; i++) {
-  //       let resultDiv = $(
-  //         '<div class="card mb-1 text-dark" style="max-width: 202px;"><img class="card-img-top" alt="Mind(Re)Set Result" src="' +
-  //           results[i].images.fixed_height.url +
-  //           '"> <div class="card-body"> <h3 class="card-title">' +
-  //           results[i].rating +
-  //           '</h3> <p class="card-text">' +
-  //           results[i].rating +
-  //           "</p> </div> </div>"
-  //       );
-  //       $("#results-one-div").append(resultDiv);
-  //     }
-  //   });
-  // });
-
-  // function queryMovies(desiredState) {
-  //   axios
-  //     .get(
-  //       "http://www.omdbapi.com/?t=" +
-  //         desiredState +
-  //         "&y=&plot=short&apikey=cd5d920a"
-  //     )
-  //     .then(function(response) {
-  //       console.log("Title: " + response.data.Title);
-  //       console.log("Genre: " + response.data.Genre);
-  //       console.log("Movie Poster URL: " + response.data.Poster);
-  //       let resultDiv = $(
-  //         '<div class="card mb-1 text-dark" style="max-width: 202px;"><img class="card-img-top" alt="Mind(Re)Set Result" src="' +
-  //           response.data.Poster +
-  //           '"> <div class="card-body"> <h3 class="card-title">' +
-  //           response.data.Title +
-  //           '</h3> <p class="card-text">' +
-  //           response.data.Genre +
-  //           "</p> </div> </div>"
-  //       );
-  //       $("#results-one-div").append(resultDiv);
-  //   });
-  // };
-
-  // let desiredState;
-
-  // $("#confirm").on("click", function() {
-  //   queryMovies("Aliens");
-  // });
 });

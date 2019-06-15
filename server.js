@@ -51,6 +51,8 @@ app.use("/auth", authRoute);
 // Routes
 //require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/historyAPIRoutes")(app);
+
 
 var syncOptions = { force: false };
 
